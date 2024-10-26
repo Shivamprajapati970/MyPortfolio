@@ -1,5 +1,5 @@
-<?php 
- include("config.php");
+<?php
+include("config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,9 @@
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -52,7 +54,8 @@
         <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
         <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
         <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-        <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+        <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a>
+        </li>
         <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
         <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
       </ul>
@@ -62,91 +65,103 @@
 
   <!-- ======= Hero Section ======= -->
   <?php
-     $sql="SELECT * From userdesc";
-     $result=$conn->query($sql);
-     if($result->num_rows > 0) {
-      while($row = $result->fetch_assoc()) {
-   ?> 
-  <section id="hero" class="d-flex flex-column justify-content-center">
-    <div class="container" data-aos="zoom-in" data-aos-delay="100">
-      <h1><?php echo htmlspecialchars($row['name']); ?></h1>
-      <p>I'm <span class="typed" data-typed-items="<?php echo htmlspecialchars($row['designation']); ?>"></span></p>
-      <div class="social-links">
-        <a href="<?php echo htmlspecialchars($row['twitter']) ?>" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="<?php echo htmlspecialchars($row['facebook']) ?>" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="<?php echo htmlspecialchars($row['instagram']) ?>" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="<?php echo htmlspecialchars($row['google-plus']) ?>" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="<?php echo htmlspecialchars($row['linkedin']) ?>" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div>
-    </div>
-  </section><!-- End Hero -->
-  <?php 
+  $sql = "SELECT * From userdesc";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      ?>
+      <section id="hero" class="d-flex flex-column justify-content-center" style="background: url('admin/<?php echo htmlspecialchars($row['backimage']);?>') top right no-repeat;background-size: cover;background-position:center;">
+        <div class="container" data-aos="zoom-in" data-aos-delay="100">
+          <h1><?php echo htmlspecialchars($row['name']); ?></h1>
+          <p>I'm <span class="typed" data-typed-items="<?php echo htmlspecialchars($row['designation']); ?>"></span></p>
+          <div class="social-links">
+            <a href="<?php echo htmlspecialchars($row['twitter']) ?>" class="twitter"><i class="bx bxl-twitter"></i></a>
+            <a href="<?php echo htmlspecialchars($row['facebook']) ?>" class="facebook"><i class="bx bxl-facebook"></i></a>
+            <a href="<?php echo htmlspecialchars($row['instagram']) ?>" class="instagram"><i
+                class="bx bxl-instagram"></i></a>
+            <a href="<?php echo htmlspecialchars($row['google-plus']) ?>" class="google-plus"><i
+                class="bx bxl-skype"></i></a>
+            <a href="<?php echo htmlspecialchars($row['linkedin']) ?>" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          </div>
+        </div>
+      </section><!-- End Hero -->
+      <?php
     }
   } else {
-      echo "<p>No data found.</p>";
+    echo "<p>No data found.</p>";
   }
 
   ?>
-  ?>
-
+  
   <main id="main">
 
     <!-- ======= About Section ======= -->
     <?php
-      $sql="SELECT * FROM about";
-      $result=$conn->query($sql);
-      if($result->num_rows>0){
-        while($row = $result->fetch_assoc()) {
-      
-    ?>
-    <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
+    $sql = "SELECT * FROM about";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
 
-        <div class="section-title">
-          <h2>About</h2>
-          <p><?php echo htmlspecialchars($row['description']) ?></p>
-        </div>
+        ?>
+        <section id="about" class="about">
+          <div class="container" data-aos="fade-up">
 
-        <div class="row">
-          <div class="col-lg-4">
-            <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-8 pt-4 pt-lg-0 content">
-            <h3><?php echo htmlspecialchars($row['title']) ?></h3>
-            <p class="fst-italic">
-              <?php echo htmlspecialchars($row['titledesc']) ?>
-            </p>
+            <div class="section-title">
+              <h2>About</h2>
+              <p><?php echo htmlspecialchars($row['description']) ?></p>
+            </div>
+
             <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span><?php echo htmlspecialchars($row['dob']) ?></span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span><?php echo htmlspecialchars($row['phone']) ?></span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span><?php echo htmlspecialchars($row['city']) ?></span></li>
-                </ul>
+              <div class="col-lg-4">
+                <img src="admin/<?php echo htmlspecialchars($row['image']) ?>" class="img-fluid" alt="">
               </div>
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span><?php echo htmlspecialchars($row['age']) ?></span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span><?php echo htmlspecialchars($row['email']) ?></span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span><?php echo htmlspecialchars($row['freelance']) ?></span></li>
-                </ul>
+              <div class="col-lg-8 pt-4 pt-lg-0 content">
+                <h3><?php echo htmlspecialchars($row['title']) ?></h3>
+                <p class="fst-italic">
+                  <?php echo htmlspecialchars($row['titledesc']) ?>
+                </p>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <ul>
+                      <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong>
+                        <span><?php echo htmlspecialchars($row['dob']) ?></span>
+                      </li>
+                      <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong>
+                        <span><?php echo htmlspecialchars($row['phone']) ?></span>
+                      </li>
+                      <li><i class="bi bi-chevron-right"></i> <strong>City:</strong>
+                        <span><?php echo htmlspecialchars($row['city']) ?></span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-6">
+                    <ul>
+                      <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong>
+                        <span><?php echo htmlspecialchars($row['age']) ?></span>
+                      </li>
+                      <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong>
+                        <span><?php echo htmlspecialchars($row['email']) ?></span>
+                      </li>
+                      <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong>
+                        <span><?php echo htmlspecialchars($row['freelance']) ?></span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <p>
+                  <?php echo htmlspecialchars($row['desc1']) ?>
+                </p>
               </div>
             </div>
-            <p>
-            <?php echo htmlspecialchars($row['desc1']) ?>
-            </p>
-          </div>
-        </div>
 
-      </div>
-    </section>
-    <?php
+          </div>
+        </section>
+        <?php
       }
-    }
-    else{
+    } else {
       echo 'No data found';
-    } 
-    
+    }
+
     ?>
     <!-- End About Section -->
 
@@ -201,50 +216,51 @@
     <!-- ======= Skills Section ======= -->
     <section id="skills" class="skills section-bg">
       <div class="container" data-aos="fade-up">
-         <?php
-          $sql="SELECT * FROM skills"; 
-          $result=$conn->query($sql);
-          if($result->num_rows> 0){
-            while($row = $result->fetch_assoc()) {
-          
-        ?>
-        
-        <div class="section-title">
-          <h2>Skills</h2>
-          <p><?php echo htmlspecialchars($row['smalldesc']) ?></p>
-        </div>
         <?php
-            }
+        $sql = "SELECT * FROM skills";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+
+            ?>
+
+            <div class="section-title">
+              <h2>Skills</h2>
+              <p><?php echo htmlspecialchars($row['smalldesc']) ?></p>
+            </div>
+            <?php
           }
-          else{
-            echo "Data not found";
-          } 
+        } else {
+          echo "Data not found";
+        }
         ?>
-        
+
         <div class="row skills-content">
           <?php
-            $sql="SELECT * FROM skilldetails"; 
-            $result=$conn->query($sql);
-            if($result->num_rows> 0){
-              while($row = $result->fetch_assoc()) {
-            
-          ?> 
-          <div class="col-lg-6">
+          $sql = "SELECT * FROM skilldetails";
+          $result = $conn->query($sql);
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
 
-            <div class="progress">
-              <span class="skill"><?php echo htmlspecialchars($row['skillname']) ?> <i class="val"><?php echo htmlspecialchars($row['skillpercentage']) ?>%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow='<?php echo htmlspecialchars($row['skillpercentage']) ?>' aria-valuemin="0" aria-valuemax="100"></div>
+              ?>
+              <div class="col-lg-6">
+
+                <div class="progress">
+                  <span class="skill"><?php echo htmlspecialchars($row['skillname']) ?> <i
+                      class="val"><?php echo htmlspecialchars($row['skillpercentage']) ?>%</i></span>
+                  <div class="progress-bar-wrap">
+                    <div class="progress-bar" role="progressbar"
+                      aria-valuenow='<?php echo htmlspecialchars($row['skillpercentage']) ?>' aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                </div>
+
               </div>
-            </div>
-
-          </div>
-          <?php
-             }
+              <?php
             }
-            else{
-              echo "Data not found";
-            } 
+          } else {
+            echo "Data not found";
+          }
           ?>
         </div>
 
@@ -255,77 +271,74 @@
     <section id="resume" class="resume">
       <div class="container" data-aos="fade-up">
         <?php
-          $sql='SELECT * FROM resumesumary';
-          $result=$conn->query($sql);
-          if($result->num_rows> 0){
-            while($row = $result->fetch_assoc()) {
-        ?>
-        <div class="section-title">
-          <h2>Resume</h2>
-          <p><?php echo htmlspecialchars($row['smalldesc']) ?></p>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6">
-            <h3 class="resume-title">Sumary</h3>
-            <div class="resume-item pb-0">
-              <h4><?php echo htmlspecialchars($row['name']) ?></h4>
-              <p><em><?php echo htmlspecialchars($row['object']) ?></em></p>
-              <ul>
-                <li><?php echo htmlspecialchars($row['address']) ?></li>
-                <li><?php echo htmlspecialchars($row['contact']) ?></li>
-                <li><?php echo htmlspecialchars($row['email']) ?></li>
-              </ul>
-            </div>
-            <?php
-              }
-            }
-            else{
-              echo 'data not found.';
-            }
+        $sql = 'SELECT * FROM resumesumary';
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
             ?>
+            <div class="section-title">
+              <h2>Resume</h2>
+              <p><?php echo htmlspecialchars($row['smalldesc']) ?></p>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <h3 class="resume-title">Sumary</h3>
+                <div class="resume-item pb-0">
+                  <h4><?php echo htmlspecialchars($row['name']) ?></h4>
+                  <p><em><?php echo htmlspecialchars($row['object']) ?></em></p>
+                  <ul>
+                    <li><?php echo htmlspecialchars($row['address']) ?></li>
+                    <li><?php echo htmlspecialchars($row['contact']) ?></li>
+                    <li><?php echo htmlspecialchars($row['email']) ?></li>
+                  </ul>
+                </div>
+                <?php
+          }
+        } else {
+          echo 'data not found.';
+        }
+        ?>
             <h3 class="resume-title">Education</h3>
             <?php
-              $sql='SELECT * FROM education';
-              $result=$conn->query($sql);
-              if($result->num_rows> 0){
-                while($row = $result->fetch_assoc()) {
-            ?>
-            <div class="resume-item">
-              <h4><?php echo htmlspecialchars($row['degreename']) ?></h4>
-              <h5><?php echo htmlspecialchars($row['year']) ?></h5>
-              <p><em><?php echo htmlspecialchars($row['clgname']) ?></em></p>
-              <p><?php echo htmlspecialchars($row['degreedesc']) ?></p>
-            </div>
-            <?php
-                }
+            $sql = 'SELECT * FROM education';
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+                ?>
+                <div class="resume-item">
+                  <h4><?php echo htmlspecialchars($row['degreename']) ?></h4>
+                  <h5><?php echo htmlspecialchars($row['year']) ?></h5>
+                  <p><em><?php echo htmlspecialchars($row['clgname']) ?></em></p>
+                  <p><?php echo htmlspecialchars($row['degreedesc']) ?></p>
+                </div>
+                <?php
               }
-              else{
-                echo 'data not found.';
-              }
+            } else {
+              echo 'data not found.';
+            }
             ?>
           </div>
 
           <div class="col-lg-6">
             <h3 class="resume-title">Professional Experience</h3>
             <?php
-              $sql='SELECT * FROM experience';
-              $result=$conn->query($sql);
-              if($result->num_rows> 0){
-                while($row = $result->fetch_assoc()) {
-            ?>
-            <div class="resume-item">
-              <h4><?php echo htmlspecialchars($row['postname']) ?></h4>
-              <h5><?php echo htmlspecialchars($row['duration']) ?></h5>
-              <p><em><?php echo htmlspecialchars($row['companyname']) ?> </em></p>
-              <p><?php echo htmlspecialchars($row['description']) ?></p>
-            </div>
-            <?php
-                }
+            $sql = 'SELECT * FROM experience';
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+                ?>
+                <div class="resume-item">
+                  <h4><?php echo htmlspecialchars($row['postname']) ?></h4>
+                  <h5><?php echo htmlspecialchars($row['duration']) ?></h5>
+                  <p><em><?php echo htmlspecialchars($row['companyname']) ?> </em></p>
+                  <p><?php echo htmlspecialchars($row['description']) ?></p>
+                </div>
+                <?php
               }
-              else{
-                echo 'data not found.';
-              }
+            } else {
+              echo 'data not found.';
+            }
             ?>
           </div>
         </div>
@@ -339,7 +352,9 @@
 
         <div class="section-title">
           <h2>Portfolio</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
+            consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
+            in iste officiis commodi quidem hic quas.</p>
         </div>
 
         <div class="row">
@@ -362,8 +377,10 @@
                 <h4>App 1</h4>
                 <p>App</p>
                 <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                    title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -376,8 +393,10 @@
                 <h4>Web 3</h4>
                 <p>Web</p>
                 <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                    title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -390,8 +409,10 @@
                 <h4>App 2</h4>
                 <p>App</p>
                 <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                    title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -404,8 +425,10 @@
                 <h4>Card 2</h4>
                 <p>Card</p>
                 <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                    title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -418,8 +441,10 @@
                 <h4>Web 2</h4>
                 <p>Web</p>
                 <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                    title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -432,8 +457,10 @@
                 <h4>App 3</h4>
                 <p>App</p>
                 <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                    title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -446,8 +473,10 @@
                 <h4>Card 1</h4>
                 <p>Card</p>
                 <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                    title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -460,8 +489,10 @@
                 <h4>Card 3</h4>
                 <p>Card</p>
                 <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                    title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -474,8 +505,10 @@
                 <h4>Web 3</h4>
                 <p>Web</p>
                 <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery"
+                    class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="portfolio-details-lightbox" data-glightbox="type: external"
+                    title="Portfolio Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>
@@ -489,49 +522,49 @@
     <!-- ======= Services Section ======= -->
     <section id="services" class="services">
       <div class="container" data-aos="fade-up">
-      <?php
-        $sql="SELECT * From services";
-        $result=$conn->query($sql);
-        if($result->num_rows > 0) {
-          while($row = $result->fetch_assoc()) {
-      ?>
-        <div class="section-title">
-          <h2>Services</h2>
-          <p><?php echo htmlspecialchars($row['smalldesc']) ?></p>
-        </div>
-      <?php
+        <?php
+        $sql = "SELECT * From services";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            ?>
+            <div class="section-title">
+              <h2>Services</h2>
+              <p><?php echo htmlspecialchars($row['smalldesc']) ?></p>
+            </div>
+            <?php
           }
-        }
-        else{
+        } else {
           echo "data not found";
-        } 
-      ?>
+        }
+        ?>
 
         <div class="row">
-        <?php
-          $sql="SELECT * From servicedetails";
-          $result=$conn->query($sql);
-          if($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-        ?>
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-box iconbox-blue">
-              <div class="icon">
-                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
-                </svg>
-                <i class="bx bxl-dribbble"></i>
-              </div>
-              <h4><a href=""><?php echo htmlspecialchars($row['name']) ?></a></h4>
-              <p><?php echo htmlspecialchars($row['sortdesc']) ?></p>
-            </div>
-          </div>
           <?php
-              }
+          $sql = "SELECT * From servicedetails";
+          $result = $conn->query($sql);
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+              ?>
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                <div class="icon-box iconbox-blue">
+                  <div class="icon">
+                    <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke="none" stroke-width="0" fill="#f5f5f5"
+                        d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174">
+                      </path>
+                    </svg>
+                    <i class="bx bxl-dribbble"></i>
+                  </div>
+                  <h4><a href=""><?php echo htmlspecialchars($row['name']) ?></a></h4>
+                  <p><?php echo htmlspecialchars($row['sortdesc']) ?></p>
+                </div>
+              </div>
+              <?php
             }
-            else{
-              echo "data not found";
-            } 
+          } else {
+            echo "data not found";
+          }
           ?>
           <!--div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
             <div class="icon-box iconbox-orange ">
@@ -613,31 +646,32 @@
 
         <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
           <div class="swiper-wrapper">
-          <?php
-            $sql="SELECT * From testimonials";
-            $result=$conn->query($sql);
-            if($result->num_rows > 0) {
-              while($row = $result->fetch_assoc()) {
-            ?>
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/testimonials/<?php echo htmlspecialchars($row['image']) ?>" class="testimonial-img" alt="">
-                <h3><?php echo htmlspecialchars($row['name']) ?></h3>
-                <h4><h3><?php echo htmlspecialchars($row['position']) ?></h3>
-                </h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  <?php echo htmlspecialchars($row['quotes']) ?>
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
             <?php
-                }
+            $sql = "SELECT * From testimonials";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+                ?>
+                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <img src="assets/img/testimonials/<?php echo htmlspecialchars($row['image']) ?>" class="testimonial-img"
+                      alt="">
+                    <h3><?php echo htmlspecialchars($row['name']) ?></h3>
+                    <h4>
+                      <h3><?php echo htmlspecialchars($row['position']) ?></h3>
+                    </h4>
+                    <p>
+                      <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                      <?php echo htmlspecialchars($row['quotes']) ?>
+                      <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                    </p>
+                  </div>
+                </div><!-- End testimonial item -->
+                <?php
               }
-              else{
-                echo "data not found";
-              } 
+            } else {
+              echo "data not found";
+            }
             ?>
             <!-- End testimonial item -->
 
@@ -681,54 +715,25 @@
             </div>
 
           </div>
-          <?php 
-             /*
-             <?php
-             if($_SERVER['REQUEST_METHOD']=='POST'){
-              //get contact us form data
-              $name=$_POST["name"];
-              $email=$_POST["email"];
-              $subject=$_POST["subject"];
-              $message=$_POST["message"];
-              
-              $stmt=$conn->prepare("INSERT INTO `contact` (`name`, `email`, `subject`, `message`) VALUES (?, ?, ?, ?");
-              // Bind parameters
-              $stmt->bind_param(  "ssss", $name, $email, $subject, $message);
-              // Execute the statement and check for success or error
-              if ($stmt->execute()) {
-                echo "<script>alert('Message sent successfully!');</script>";
-              } 
-              else {
-              echo "<script>alert('Error: " . $stmt->error . "');</script>";
-      }
-
-      $stmt->close();
-  }
-
-             
-            ?>
-             */
-           ?>
           <div class="col-lg-8 mt-5 mt-lg-0">
-
             <form action="forms/contact.php" method="post" role="form" class="php-email-form">
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name">
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email">
                 </div>
               </div>
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
               </div>
               <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
               </div>
               <div class="my-3">
                 <div class="loading">Loading</div>
-                <div class="error-message"></div>
+                <div class="error-message bg-success" ></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
@@ -745,15 +750,21 @@
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
+  <?php
+  $sql = "SELECT * From userdesc";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      ?>
     <div class="container">
-      <h3>Brandon Johnson</h3>
+      <h3> <?php echo htmlspecialchars($row['name']);?> </h3>
       <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
       <div class="social-links">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        <a href="<?php echo htmlspecialchars($row['twitter']) ?>" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="<?php echo htmlspecialchars($row['facebook']) ?>>" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="<?php echo htmlspecialchars($row['instagram']); ?>" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="<?php echo htmlspecialchars($row['google-plus']); ?>" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="<?php echo htmlspecialchars($row['linkedin']); ?>" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>
       <div class="copyright">
         &copy; Copyright <strong><span>MyResume</span></strong>. All Rights Reserved
@@ -766,10 +777,18 @@
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>
+    <?php
+    }
+  } else {
+    echo "<p>No data found.</p>";
+  }
+
+  ?>
   </footer><!-- End Footer -->
 
   <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
